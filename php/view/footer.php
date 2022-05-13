@@ -1,4 +1,4 @@
-
+<?php echo mysqli_error($con) ?>
         <!-- /#page-wrapper -->
         <footer class="footer text-center"> <?=date("Y")?> &copy; <?=$setting['nama']?> <a
                 href="https://www.rikydwianto.com/">rikydwianto.com</a> </footer>
