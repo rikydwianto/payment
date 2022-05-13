@@ -36,6 +36,7 @@ if(mysqli_num_rows($q)>0){
 		}
 		else
 		pesan("USERNAME DITEMUKAN, Password SALAH!!",'danger');
+		echo mysqli_error($con);
 	
 
 	
