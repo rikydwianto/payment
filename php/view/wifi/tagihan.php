@@ -79,7 +79,7 @@
                     <?php
                 }
                 ?>
-                <a href="https://wa.me/<?=$row['no_hp']?>?text=<?=$text?>" title="KIRIM WHATSAPP" target="_blank" class="btn btn-xs btn-info"><i class="ti-sharethis"></i></a>
+                <a href="https://wa.me/+62<?=(int)$row['no_hp']?>?text=<?=$text?>" title="KIRIM WHATSAPP" target="_blank" class="btn btn-xs btn-info"><i class="ti-sharethis"></i></a>
             </td>
         </tr>
     <?php 
