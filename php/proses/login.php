@@ -22,7 +22,7 @@ $user=aman($_POST['uname']);
 $pass=aman(md5($_POST['password']));
 // // session_start();
 // session_destroy();
-$q=mysqli_query($kon,"select * from user where username='$user'  ");
+$q=mysqli_query($kon,"select * from tb_user where username='$user'  ");
 // echo mysqli_error($kon);
 // echo mysqli_num_rows($q);
 if(mysqli_num_rows($q)>0){
