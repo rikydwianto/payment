@@ -15,7 +15,7 @@ if(isset($_SESSION['uid'])){
 <li>
     <a href="<?=$url.$menu?>kas" class="waves-effect"><i class="ti-face-smile fa-fw"></i> Arus Kas</a>
 </li>
-<li>
+<!-- <li>
     <a href="map-google.html" class="waves-effect"><i class="ti-location-pin fa-fw"></i> Google
         Map</a>
 </li>
@@ -24,6 +24,9 @@ if(isset($_SESSION['uid'])){
 </li>
 <li>
     <a href="404.html" class="waves-effect"><i class="ti-info fa-fw"></i> Error 404</a>
+</li> -->
+<li>
+    <a href="<?=$url."logout.php"?>" class="waves-effect"><i class="ti-shift-left fa-fw"></i> Logout</a>
 </li>
     <?php
 }

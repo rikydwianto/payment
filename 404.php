@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-
+<?php include "./config/setting.php" ?>
+<?php include "./php/config/function.php" ?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,7 @@
                 <h3 class="text-uppercase">Tidak Ditemukan !</h3>
                 <p class="text-muted m-t-30 m-b-30">Anda mencari halaman yang tidak ditemukan
                 </p>
-                <a href="dashboard.html" class="btn btn-primary btn-rounded waves-effect waves-light m-b-40">Back to
+                <a href="<?=$url?>" class="btn btn-primary btn-rounded waves-effect waves-light m-b-40">Back to
                     home</a>
             </div>
             <footer class="footer text-center"> 2022 &copy; Hubungi Admin ! <a

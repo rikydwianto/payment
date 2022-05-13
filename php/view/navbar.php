@@ -27,7 +27,15 @@
                         <h4 class="page-title"><?=$setting['nama']?></h4>
                         <ol class="breadcrumb">
                             <li><a href="<?=$url?>">Dashboard</a></li>
-                            <li class="active"><?=$bread?></li>
+                            <li class="active"><a href="<?=$url.$menu.$bread?>"> <?=$bread?></a></li>
+                            <?php 
+                            if(isset($_GET['sub'])){
+                            ?>
+                            <li class="active"><?=$_GET['sub']?></li>
+                            <?php    
+                            }
+                            ?>
+                            
                         </ol>
                     </div>
                     <!-- /.col-lg-12 -->
