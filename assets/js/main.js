@@ -53,3 +53,26 @@ function confirm_submit(nama_form,text,Title='Peringatan!'){
 
 
 
+function konfirmasi(link,text,Title='Peringatan!'){
+  $(document).ready(function(){
+  
+  swal({
+      title: Title,
+      text: text,
+      icon: "warning",
+      buttons: [
+        'No, cancel it!',
+        'Yes, I am sure!'
+      ],
+      dangerMode: true,
+    }).then(function(isConfirm) {
+      if (isConfirm) {
+       // alert(0);\
+       window.location.href=link;
+      } else {
+        swal("Cancelled", "dibatalkan", "error");
+      }
+    })
+  })
+
+}

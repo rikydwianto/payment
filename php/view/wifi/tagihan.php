@@ -23,11 +23,11 @@
     $priode = date("n");
     $tahun = date("Y");
     $tgl = date('j');
-    $cek_tagihan = mysqli_query($con,"SELECT * FROM langganan l  JOIN tb_user u ON u.`id_user` = l.`id_user`  JOIN paket p ON p.`id_paket` = l.`id_paket` WHERE p.`kategori`='wifi' # and (l.mulai_langganan-CURDATE())>0");
+    $cek_tagihan = mysqli_query($con,"SELECT * FROM langganan l  JOIN tb_user u ON u.`id_user` = l.`id_user`  JOIN paket p ON p.`id_paket` = l.`id_paket` WHERE p.`kategori`='wifi' and u.status='aktif' and l.status='aktif' # and (l.mulai_langganan-CURDATE())>0");
     while($row = mysqli_fetch_array($cek_tagihan)){ 
     $jp = $row['tgl_tempo'];
     $due = ($tgl - $jp);
-    $qcek_pembayaran = mysqli_query($con,"select * from pembayaran where status_pembayaran='full' and id_langganan='$row[id_langganan]' and bulan='$priode' and tahun='$tahun'");
+    $qcek_pembayaran = mysqli_query($con,"select * from pembayaran where status_pembayaran='lunas' and id_langganan='$row[id_langganan]' and bulan='$priode' and tahun='$tahun'");
 //EDIT DISINI UTUK PEMBAYRAN SETENGAH
     if(mysqli_num_rows($qcek_pembayaran)>0){
         $ket="sudah bayar";
@@ -69,7 +69,7 @@
                 $text = urlencode($text);
                 if(mysqli_num_rows($qcek_pembayaran)<1){
                     ?>
-                <a href="<?=$url.$menu.'pembayaran&'?>sub=bayar&id=<?=$row['id_langganan']?>&kategori=wifi&priode=<?=$priode?>&tahun=<?=$tahun?>" class="btn btn-xs btn-success" title="BAYAR"><i class="ti-money"></i></a> | 
+                <a href="<?=menu('pembayaran','bayar',$row['id_langganan'],"kategori=wifi&priode=$priode&tahun=$tahun")?>" class="btn btn-xs btn-success" title="BAYAR"><i class="ti-money"></i></a> | 
                 
                     <?php
                 }

@@ -30,9 +30,10 @@
     $(document).ready(function () {
         $('#table').DataTable({
             dom: 'Bfrtip',
-            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+            buttons: [ 'excel', 'pdf', 'print']
         });
     });
+    //'copy', 'csv',
 </script>
 
 </body>

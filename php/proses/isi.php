@@ -1,6 +1,7 @@
 <div class='table-responsive'>
 
 <?php 
+$uid = $_SESSION['uid'];
 if(isset($_GET['menu'])){
     $halaman = $_GET['menu'];
    @ $sub = $_GET['sub'];
@@ -10,7 +11,7 @@ if(isset($_GET['menu'])){
         include"$path";
     }
     else{
-        swal('halaman tidak ditemukan','warning','HALAMAN TIDAK DITEMUKAN');
+        swal('halaman tidak ditemukan','HALAMAN TIDAK DITEMUKAN','warning');
         pindah("404.php");
     }
 }

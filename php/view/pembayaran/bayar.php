@@ -1,5 +1,5 @@
 <?php
-$id_langganan =aman($_GET['id']);
+$id_langganan =aman(de($_GET['id']));
 $priode =aman($_GET['priode']);
 $tahun =aman($_GET['tahun']);
 $cek_tagihan = mysqli_query($con,"SELECT * FROM langganan l  JOIN tb_user u ON u.`id_user` = l.`id_user`  JOIN paket p ON p.`id_paket` = l.`id_paket` WHERE l.id_langganan='$id_langganan'");
@@ -8,7 +8,7 @@ $nama_pel = $pel['nama'];
 $nama_paket = strtoupper("( $pel[kategori])-". $pel['nama_paket']);
 $harga_paket = $pel['tarif'];
 $selisih = $pel['tgl_tempo'] - date("j");
-if($selisih>0)
+if($selisih<1)
 {
     $ket = "Sudah lewat $selisih hari";
 }
@@ -49,7 +49,7 @@ else{
             <table class='table'>
             <tr>
                 <td>TOTAL TAGIHAN</td>
-                <td><input type="number" name='bayar' min='<?=($harga_paket)?>' value='<?=$pel['total_tagihan']?>' class='form-control'></td>
+                <td><input type="number" name='bayar' min='<?=$pel['total_tagihan']?>' value='<?=$pel['total_tagihan']?>' class='form-control'></td>
             </tr>
             <tr>
                 <td>TANGGAL</td>
@@ -85,19 +85,22 @@ if(isset($_POST['tmb_bayar'])){
     $tagihan = $_POST['bayar'];
     $tgl = $_POST['tgl'];
     $metode = $_POST['metode'];
-    $qbayar = "INSERT INTO `pembayaran` (`id_user`, `id_paket`, `id_langganan`, `nominal`, `status_pembayaran`, `pembayaran`, `payment_method`, `bulan`, `tahun`, `tgl_pembayaran`) 
-            VALUES ('$pel[id_user]', '$pel[id_paket]', '$pel[id_langganan]', '$tagihan', 'full', 'wifi', '$metode', '$priode', '$tahun', '2022-05-12');     ";
+    $qbayar = "INSERT INTO `pembayaran` (`id_user`, `id_paket`, `id_langganan`, `nominal`, `status_pembayaran`, `pembayaran`, `payment_method`, `bulan`, `tahun`, `tgl_pembayaran`,`penerima_id`) 
+            VALUES ('$pel[id_user]', '$pel[id_paket]', '$pel[id_langganan]', '$tagihan', 'lunas', 'wifi', '$metode', '$priode', '$tahun', '2022-05-12','$uid');     ";
     $q = mysqli_query($con,$qbayar);
     if($q)
     {
+        if($metode=='KAS'){
         mysqli_query($con,"INSERT into `kas`(akun,keterangan,nominal,status,payment_method,tanggal_kas)
                         values('401','penerimaan pembayaran wifi an $nama_pel','$tagihan','sukses','$metode','$tgl');
         ");
-        swal("Berhasil dibayar, Terimakasih","success","Berhasil");
+
+        }
+        swal("Berhasil dibayar, Terimakasih","Berhasil","success");
         pindah("$url.$menu"."pembayaran");
     }
     else{
-        swal("Gagal dibayarkan. Error ". mysqli_error($con),"warning","GAGAL");
+        swal("Gagal dibayarkan. Error ". mysqli_error($con),"GAGAL","warning");
         
     }
 }

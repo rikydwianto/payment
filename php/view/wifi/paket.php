@@ -25,8 +25,8 @@
             <td><?=$row['keterangan']?></td>
             <td><?=$row['kategori']?></td>
             <td>
-                <a href="javascript:void(0);" data-url='<?=$menu_al."act=hapus&id=$row[id_paket]"?>' id='klik_<?=$no?>' onclick="confirm_aksi('<?=$no?>','link')" class="btn btn-danger"><i class="ti-close"></i></a>
-                <a href="<?=$menu_al."act=edit&id=$row[id_paket]"?>" class="btn btn-warning"><i class="ti-pencil"></i></a>
+                <a href="javascript:void(0);" data-url='<?=menu('wifi','paket',$row['id_paket'],'act=hapus')?>' id='klik_<?=$no?>' onclick="confirm_aksi('<?=$no?>','link')" class="btn btn-danger"><i class="ti-close"></i></a>
+                <a href="<?=menu('wifi','editpaket',$row['id_paket'])?>" class="btn btn-warning"><i class="ti-pencil"></i></a>
             </td>
         </tr>
         <?php 
@@ -39,7 +39,7 @@
 if(isset($_GET['act'])){
     $act = $_GET['act'];
     if($act=='hapus'){
-        $id=aman($_GET['id']);
+        $id=aman(de($_GET['id']));
        $hapus = mysqli_query($con,"delete from paket where id_paket='$id'");
        if($hapus){
            swal("Berhasil Dihapus");
