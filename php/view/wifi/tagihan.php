@@ -23,7 +23,7 @@
     $priode = date("n");
     $tahun = date("Y");
     $tgl = date('j');
-    $cek_tagihan = mysqli_query($con,"SELECT * FROM langganan l  JOIN USER u ON u.`id_user` = l.`id_user`  JOIN paket p ON p.`id_paket` = l.`id_paket` WHERE p.`kategori`='wifi' # and (l.mulai_langganan-CURDATE())>0");
+    $cek_tagihan = mysqli_query($con,"SELECT * FROM langganan l  JOIN tb_user u ON u.`id_user` = l.`id_user`  JOIN paket p ON p.`id_paket` = l.`id_paket` WHERE p.`kategori`='wifi' # and (l.mulai_langganan-CURDATE())>0");
     while($row = mysqli_fetch_array($cek_tagihan)){ 
     $jp = $row['tgl_tempo'];
     $due = ($tgl - $jp);

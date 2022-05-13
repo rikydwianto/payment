@@ -2,7 +2,7 @@
 $id_langganan =aman($_GET['id']);
 $priode =aman($_GET['priode']);
 $tahun =aman($_GET['tahun']);
-$cek_tagihan = mysqli_query($con,"SELECT * FROM langganan l  JOIN USER u ON u.`id_user` = l.`id_user`  JOIN paket p ON p.`id_paket` = l.`id_paket` WHERE l.id_langganan='$id_langganan'");
+$cek_tagihan = mysqli_query($con,"SELECT * FROM langganan l  JOIN tb_user u ON u.`id_user` = l.`id_user`  JOIN paket p ON p.`id_paket` = l.`id_paket` WHERE l.id_langganan='$id_langganan'");
 $pel= (mysqli_fetch_array($cek_tagihan));
 $nama_pel = $pel['nama'];
 $nama_paket = strtoupper("( $pel[kategori])-". $pel['nama_paket']);

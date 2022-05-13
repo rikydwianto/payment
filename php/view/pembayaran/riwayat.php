@@ -16,7 +16,7 @@
     <tbody>
     <?php 
     $qriwayat = mysqli_query($con,"
-    SELECT * FROM pembayaran p JOIN USER u ON p.id_user = u.id_user JOIN paket pp ON p.id_paket = pp.id_paket JOIN langganan l ON l.`id_langganan` = p.`id_langganan`
+    SELECT * FROM pembayaran p JOIN tb_user u ON p.id_user = u.id_user JOIN paket pp ON p.id_paket = pp.id_paket JOIN langganan l ON l.`id_langganan` = p.`id_langganan`
     ");
     while($r = mysqli_fetch_array($qriwayat)){
         
