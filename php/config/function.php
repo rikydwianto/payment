@@ -50,7 +50,7 @@ function hari()
   return ($hari_array);
 }
 
-function swal($isi,$title=null,$warna='success'){
+function swal($isi,$title="INFORMASI",$warna='success'){
   if($title==null){
     $title='Berhasil';
   }
@@ -208,4 +208,56 @@ function paket($id){
   $con = $GLOBALS['con'];
   $q = mysqli_query($con,"select * from paket");
   return mysqli_fetch_array($q);
+}
+
+
+function coa($key=null,$required='required'){
+ $con = $GLOBALS['con'];
+ $qcoa = mysqli_query($con,"select * from coa ");
+
+  ?>
+   <select name="coa" class="form-control form-select" aria-label="Default select example" <?=$required?> id="" class='form-control'>
+        <option value="">PILIH AKUN PERKIRAAN</option>
+      <?php 
+      while($coa = mysqli_fetch_array($qcoa)){
+        if($coa['coa']=='coa'){
+
+          ?>
+        <option value="" disabled><b>------- <?=$coa['no_akun']?> - <?=$coa['nama_perkiraan']?></b></option>
+        
+        <?php
+      }
+      else{
+        if($key==$coa['no_akun']) $selected ="selected";
+        else $selected='';
+        ?>
+        <option value="<?=$coa['no_akun']?>" <?=$selected?>><?=$coa['no_akun']?> - <?=$coa['nama_perkiraan']?></option>
+        <?php
+      }
+      }
+      
+      ?>
+      <!-- <option value="admin">ADMIN</option> -->
+  </select>
+  <?php
+}
+
+
+function debitkredit($key=null,$required='required'){
+  $array = array('debit'=>'PEMASUKAN','KREDIT'=>'PENGELUARAN')
+  ?>
+   <select name="pemasukan" <?=$required?> id="" class='form-control'>
+        <option value="">PILIH STATUS</option>
+      <?php 
+      foreach($array as $r => $val){
+        if($key==$r) $sel='selected';
+        else  $sel='';
+        ?>
+        <option <?=$sel?> value="<?=$r?>"><?=$val?></option>
+        <?php
+      }
+      ?>
+      <!-- <option value="admin">ADMIN</option> -->
+  </select>
+  <?php
 }

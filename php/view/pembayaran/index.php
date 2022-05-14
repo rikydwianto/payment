@@ -1,7 +1,7 @@
 <h3>PEMBAYARAN
 <div style="float:right"> 
 <a href="<?=$url.$menu."pembayaran&sub=riwayat"?>" class="btn btn-primary">Riwayat Pembayaran</a>
-<a href="<?=$menu_al?>act=tambah" class="btn btn-danger">Tambah Tagihan</a>
+<a href="<?=menu('pembayaran','tambahtagihan')?>" class="btn btn-danger">Tambah Tagihan</a>
 </div>
 
 
@@ -18,7 +18,13 @@ if(isset($_GET['sub'])){
         case"riwayat":
              include"./php/view/pembayaran/riwayat.php";
              break;
-             default:
+        case"tambahtagihan":
+             include"./php/view/pembayaran/tambahtagihan.php";
+             break;
+        case"hapustagihan":
+             include"./php/view/pembayaran/hapustagihan.php";
+             break;
+        default:
              echo"isi default";
             }
             

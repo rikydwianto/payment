@@ -1,5 +1,6 @@
 <?php
 $id_langganan =aman(de($_GET['id']));
+$id_tagih =aman(($_GET['id_tagih']));
 $priode =aman($_GET['priode']);
 $tahun =aman($_GET['tahun']);
 $cek_tagihan = mysqli_query($con,"SELECT * FROM langganan l  JOIN tb_user u ON u.`id_user` = l.`id_user`  JOIN paket p ON p.`id_paket` = l.`id_paket` WHERE l.id_langganan='$id_langganan'");
@@ -91,13 +92,15 @@ if(isset($_POST['tmb_bayar'])){
     if($q)
     {
         if($metode=='KAS'){
-        mysqli_query($con,"INSERT into `kas`(akun,keterangan,nominal,status,payment_method,tanggal_kas)
-                        values('401','penerimaan pembayaran wifi an $nama_pel','$tagihan','sukses','$metode','$tgl');
+        mysqli_query($con,"INSERT into `kas`(akun,keterangan,masuk,status,payment_method,tanggal_kas)
+                        values('401','penerimaan pembayaran wifi an $nama_pel bulan $priode tahun $tahun','$tagihan','debit','$metode','$tgl');
         ");
 
         }
+
+        mysqli_query($con,"update tagihan set status='bayar' where id_tagihan='$id_tagih'");
         swal("Berhasil dibayar, Terimakasih","Berhasil","success");
-        pindah("$url.$menu"."pembayaran");
+       pindah("$url.$menu"."pembayaran");
     }
     else{
         swal("Gagal dibayarkan. Error ". mysqli_error($con),"GAGAL","warning");

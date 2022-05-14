@@ -93,7 +93,7 @@ if(isset($_GET['aktif'])){
          $insert = mysqli_query($con,$text);
          if($insert){
              swal("PAKET $paket[nama_paket] Berhasil Ditambahkan! :) ","INFORMASI");
-             pindah(menu('pelanggan','langganan',$id));
+             pindah(menu('pelanggan','list'));
          }
          else{
              swal("Gagal ditambahkan",'GAGAL','warning');

@@ -1,3 +1,10 @@
+<?php 
+$cek_user = mysqli_query($con,"select * from tb_user where level='cust' order by id_user desc");
+if(mysqli_num_rows($cek_user)==0) $no_user = 1;
+$cek_user = mysqli_fetch_array($cek_user);
+$no_user = $cek_user['id_user'];
+$val_user = "cust-". sprintf("%04d",$no_user);
+?>
 <h1 class="display-1">TAMBAH USER</h1>
 <div class="row">
     <div class="container">
@@ -12,10 +19,10 @@
                 </tr>
                 <tr>
                     <td>USERNAME
-                        <br><code>bisa dikosongkan</code>
+                        <br><code>bisa dirubah</code>
                     </td>
                     <td>
-                        <input type="text" class='form-control' name='uname'>
+                        <input type="text" value='<?=$val_user?>' class='form-control' name='uname'>
                     </td>
                 </tr>
                 <tr>

@@ -76,3 +76,8 @@ function konfirmasi(link,text,Title='Peringatan!'){
   })
 
 }
+
+//PROSEDURAL
+function tanya(){
+  alert(0)
+}
