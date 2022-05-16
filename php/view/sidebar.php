@@ -11,6 +11,9 @@ if(isset($_SESSION['uid'])){
 <li>
     <a href="<?=$url.$menu?>pelanggan" class="waves-effect"><i class="ti-user fa-fw"></i>Pelanggan</a>
 </li>
+<li>
+    <a href="<?=$url.$menu?>pulsa" class="waves-effect"><i class="ti-handphone fa-fw"></i>PULSA</a>
+</li>
 
 <li>
     <a href="<?=$url.$menu?>kas" class="waves-effect"><i class="ti-face-smile fa-fw"></i> Arus Kas</a>

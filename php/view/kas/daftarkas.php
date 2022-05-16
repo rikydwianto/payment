@@ -1,3 +1,4 @@
+
 <h1 class='dispkay-1'>ARUS KAS</h1>
 <?php 
 $date  = date("Y-m-d");
@@ -73,3 +74,4 @@ $cek_saldo = $saldo_awal = mysqli_fetch_array($cek_saldo)['saldo_kemarin'];
             </tr>
     </tbody>
 </table>
+

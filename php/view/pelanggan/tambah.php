@@ -1,8 +1,11 @@
 <?php 
-$cek_user = mysqli_query($con,"select * from tb_user where level='cust' order by id_user desc");
-if(mysqli_num_rows($cek_user)==0) $no_user = 1;
-$cek_user = mysqli_fetch_array($cek_user);
-$no_user = $cek_user['id_user'];
+$cek_user = mysqli_query($con,"select * from tb_user where level='cust' order by id_user desc limit 0,1");
+if(mysqli_num_rows($cek_user)>0){
+    $cek_user = mysqli_fetch_array($cek_user);
+    $no_user = $cek_user['id_user'];
+
+} 
+$no_user = 1;
 $val_user = "cust-". sprintf("%04d",$no_user);
 ?>
 <h1 class="display-1">TAMBAH USER</h1>

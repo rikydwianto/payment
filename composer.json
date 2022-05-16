@@ -1,0 +1,18 @@
+{
+    "name": "mrahsyasauqi/payment",
+    "autoload": {
+        "psr-4": {
+            "Mrahsyasauqi\\Payment\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "rikydwianto",
+            "email": "rikydwianto04@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "7.0",
+        "iak-id/iak-api-php": "^1.0"
+    }
+}

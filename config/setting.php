@@ -25,6 +25,8 @@ $menu ="index.php?menu=";
 	$uri .= $_SERVER['HTTP_HOST'];
 $url = $uri.'/';
  $url = "http://localhost/payment/";
+  $uname_api   = "089657507293";
+  $apiKey   = "57161c1414e2ac3b";
 
 
 $get = $_GET;
