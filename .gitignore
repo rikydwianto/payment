@@ -4,4 +4,3 @@
 *.bak              # abaikan file dengan ekstensi .bak
 !file.bak          # pengecualian, file.bak tidak diabaikan
 /config
-/vendor/
