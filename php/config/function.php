@@ -1,4 +1,6 @@
-<?php function load($folder,$param){
+<?php 
+
+function load($folder,$param){
     include("php/$folder/$param.php");
 
 }
@@ -165,7 +167,7 @@ function select_metode($con,$nama='metode',$attr=null){
 
 
 function level_user($key=null,$required='required'){
-  $array = array('admin'=>'ADMIN','cust'=>'PELANGGAN')
+  $array = array('admin'=>'ADMIN','cust'=>'PELANGGAN','owner'=>'PEMILIK USAHA','super'=>'SUPER USER')
   ?>
    <select name="level" <?=$required?> id="" class='form-control'>
         <option value="">PILIH LEVEL USER</option>
@@ -206,7 +208,7 @@ function status($key=null,$required='required'){
 
 function paket($id){
   $con = $GLOBALS['con'];
-  $q = mysqli_query($con,"select * from paket");
+  $q = mysqli_query($con,"select * from paket where id_paket='$id'");
   return mysqli_fetch_array($q);
 }
 
@@ -244,7 +246,7 @@ function coa($key=null,$required='required'){
 
 
 function debitkredit($key=null,$required='required'){
-  $array = array('debit'=>'PEMASUKAN','KREDIT'=>'PENGELUARAN')
+  $array = array('debit'=>'PEMASUKAN','kredit'=>'PENGELUARAN')
   ?>
    <select name="pemasukan" <?=$required?> id="" class='form-control'>
         <option value="">PILIH STATUS</option>
@@ -254,6 +256,36 @@ function debitkredit($key=null,$required='required'){
         else  $sel='';
         ?>
         <option <?=$sel?> value="<?=$r?>"><?=$val?></option>
+        <?php
+      }
+      ?>
+      <!-- <option value="admin">ADMIN</option> -->
+  </select>
+  <?php
+}
+
+function user_details($con,$id){
+  $q=mysqli_query($con,"SELECT * from tb_user t join usaha u on t.id_usaha=u.id_usaha where t.id_user='$id'
+  ");
+  return mysqli_fetch_array($q);
+}
+
+function select_usaha($con,$id,$aktif=' '){
+  if($_SESSION['level']=='super'){
+    $aktif="";
+  }
+  else $aktif="where id_usaha='$id'";
+  $q=mysqli_query($con,"SELECT id_usaha,nama_usaha from usaha $aktif ");
+  
+  ?>
+   <select name="id_usaha" required <?=$aktif?> id="" class='form-control'>
+        <option value="">PILIH NAMA USAHA</option>
+      <?php 
+      while($r = mysqli_fetch_array($q)){
+        if($id==$r['id_usaha']) $sel='selected';
+        else  $sel='';
+        ?>
+        <option <?=$sel?> value="<?=$r['id_usaha']?>"><?=$r['nama_usaha']?></option>
         <?php
       }
       ?>

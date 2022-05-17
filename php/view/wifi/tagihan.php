@@ -22,14 +22,14 @@
     </thead>
     <tbody>
     <?php
-$filter_qeury=" where  status='belumbayar'";
+$filter_qeury=" and  status='belumbayar'";
     if(isset($_GET['filter'])){
         $filter = $_GET['filter'];
         if($filter=='semua'){
             $filter_qeury='';
         }
     }
-    $qtagihan = mysqli_query($con,"SELECT * from tagihan $filter_qeury");
+    $qtagihan = mysqli_query($con,"SELECT * from tagihan where id_usaha='$id_usaha' $filter_qeury");
     while($tagih = mysqli_fetch_array($qtagihan)){
 
         

@@ -1,12 +1,19 @@
 <?php 
-$cek_user = mysqli_query($con,"select * from tb_user where level='cust' order by id_user desc limit 0,1");
-if(mysqli_num_rows($cek_user)>0){
-    $cek_user = mysqli_fetch_array($cek_user);
-    $no_user = $cek_user['id_user'];
+$cek_user = mysqli_query($con,"select count(*) as total, id_user,username from tb_user where level='cust' and id_usaha='$id_usaha' order by id_user desc limit 0,1");
+$cek_user = mysqli_fetch_array($cek_user);
+
+if($cek_user['total']==0){
+    
+    $no_user = 1;
 
 } 
-$no_user = 1;
-$val_user = "cust-". sprintf("%04d",$no_user);
+else{
+    // $cek_user = mysqli_fetch_array($cek_user);
+    $no_user = (int)$cek_user['total'] + 1;
+    // echo $cek_user['username'];
+}
+echo $no_user;
+$val_user = "cust-".sprintf("%03d",$id_usaha).'-'. sprintf("%04d",$no_user);
 ?>
 <h1 class="display-1">TAMBAH USER</h1>
 <div class="row">
@@ -25,7 +32,7 @@ $val_user = "cust-". sprintf("%04d",$no_user);
                         <br><code>bisa dirubah</code>
                     </td>
                     <td>
-                        <input type="text" value='<?=$val_user?>' class='form-control' name='uname'>
+                        <input type="text" readonly value='<?=$val_user?>' class='form-control' name='uname'>
                     </td>
                 </tr>
                 <tr>
@@ -42,7 +49,7 @@ $val_user = "cust-". sprintf("%04d",$no_user);
                         
                     </td>
                     <td>
-                        <input type="text" class='form-control' name='password'>
+                        <input type="text" value='123456' class='form-control' name='password'>
                     </td>
                 </tr>
          
@@ -56,6 +63,12 @@ $val_user = "cust-". sprintf("%04d",$no_user);
                     <td>STATUS</td>
                     <td>
                       <?=status('aktif')?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>UNIT USAHA</td>
+                    <td>
+                      <?=select_usaha($con,$id_usaha)?>
                     </td>
                 </tr>
                 <tr>
@@ -75,10 +88,11 @@ if(isset($_POST['tambah_user'])){
     $uname = aman($_POST['uname']);
     $pass = md5(aman($_POST['password']));
     $nohp = aman($_POST['nohp']);
+    $is_usaha = aman($_POST['id_usaha']);
     $level = aman($_POST['level']);
     $status = aman($_POST['status']);
-    $insert = "INSERT INTO `tb_user` ( `username`,`password`, `nama`, `no_hp`, `level`, `status`)
-     VALUES ('$uname','$pass', '$nama', '$nohp', '$level', '$status'); ";
+    $insert = "INSERT INTO `tb_user` ( `username`,`password`, `nama`, `no_hp`, `level`, `status`,id_usaha)
+     VALUES ('$uname','$pass', '$nama', '$nohp', '$level', '$status','$id_usaha'); ";
     $query = mysqli_query($con,$insert);
     if($query){
         swal('Berhasil ditambahkan, Silahkan Pilih Paket','INFORMASI');

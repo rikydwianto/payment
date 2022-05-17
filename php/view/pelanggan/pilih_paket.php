@@ -85,12 +85,14 @@ if(isset($_GET['aktif'])){
          $tempo = $_POST['tempo'];
          $paket = paket($id_paket);
          $tagihan = $_POST['tagihan'];
+         $id_usaha = $_POST['id_usaha'];
          if(empty($tagihan)){
              $tagihan = $paket['tarif'];
          }
-         $text = "INSERT into langganan(id_user,id_paket,tgl_tempo,total_tagihan,mulai_langganan,status)
-         values('$id','$id_paket','$tempo','$tagihan',curdate(),'aktif')";
+         $text = "INSERT into langganan(id_user,id_paket,tgl_tempo,total_tagihan,mulai_langganan,status,id_usaha)
+         values('$id','$id_paket','$tempo','$tagihan',curdate(),'aktif','$id_usaha')";
          $insert = mysqli_query($con,$text);
+         echo $tagihan;
          if($insert){
              swal("PAKET $paket[nama_paket] Berhasil Ditambahkan! :) ","INFORMASI");
              pindah(menu('pelanggan','list'));
@@ -112,7 +114,7 @@ if(isset($_GET['aktif'])){
                     <select name="paket" required class='form-control' id="">
                         <option value="">SILAHKAN PILIH PAKET</option>
                         <?php 
-                            $cek_paket = mysqli_query($con,"select * from paket ");
+                            $cek_paket = mysqli_query($con,"select * from paket where id_usaha='$id_usaha'");
                             while($row = mysqli_fetch_array($cek_paket)){
                                 ?>
                                 <option value="<?=$row['id_paket']?>"><?=strtoupper($row['kategori'].'-'.$row['nama_paket'].' | '.uang($row['tarif'],'ya'))?></option>
@@ -132,6 +134,12 @@ if(isset($_GET['aktif'])){
                     <td>TOTAL TAGIHAN <br> JIKA DIKOSONGKAN AKAN SESUAI DENGAN PAKET</td>
                     <td>
                     <input type='number' class='form-control' type="submit" name='tagihan' value="">
+                    </td>
+                </tr>
+                <tr>
+                    <td>UNIT</td>
+                    <td>
+                    <?=select_usaha($con,$id_usaha)?>
                     </td>
                 </tr>
                 <tr>

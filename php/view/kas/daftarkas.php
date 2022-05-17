@@ -1,16 +1,42 @@
+<div class="col-md-12">
+    <div class="col-md-6">
+    <h1 class='dispkay-1'>ARUS KAS</h1>
 
-<h1 class='dispkay-1'>ARUS KAS</h1>
+    </div>
+    <div class="col-md-6">
+        <br>
+        <form method="get">
+            <input type="hidden" name="menu" value='kas'>
+            <input type="hidden" name="sub" value="list">
+            <div class="col-md-4">
+                <input type="date" value='<?=date('Y-m-d')?>' class='form-control' name="tgl_awal" id=""></div>    
+            <div class="col-md-4">
+            <input type="date" value='<?=date('Y-m-d')?>' class='form-control' name="tgl_banding" id="">
+
+            </div>  
+            <div class="col-md-4">
+                <input type="submit" value="LIHAT" name='lihat' class='btn btn-danger'>
+            </div>  
+        </form>
+    </div>
+</div>
+<hr>
+
 <?php 
-$date  = date("Y-m-d");
-$date_banding  = date("Y-m-d");
+if(isset($_GET['lihat'])){
+
+
+$date  = $_GET['tgl_awal'];
+$date_banding  = $_GET['tgl_banding'];
 $date_sebelum = date('Y-m-d', strtotime('-1 days', strtotime($date)));
-$cek_saldo = mysqli_query($con,"SELECT SUM(masuk)-SUM(keluar) AS saldo_kemarin FROM kas WHERE tanggal_kas<'$date'");
+$cek_saldo = mysqli_query($con,"SELECT SUM(masuk)-SUM(keluar) AS saldo_kemarin FROM kas WHERE tanggal_kas<'$date' and id_usaha='$id_usaha'");
 $cek_saldo = $saldo_awal = mysqli_fetch_array($cek_saldo)['saldo_kemarin'];
 ?>
 <table class="table table-bordered" id="table!">
     <thead>
         <tr>
             <th>NO</th>
+            <th>TANGGAL</th>
             <th>AKUN</th>
             <th>URAIAN</th>
             <th>DEBIT</th>
@@ -21,7 +47,7 @@ $cek_saldo = $saldo_awal = mysqli_fetch_array($cek_saldo)['saldo_kemarin'];
     </thead>
     <tbody>
         <tr>
-            <td colspan="3">SALDO AWAL</td>
+            <td colspan="4">SALDO AWAL</td>
 
             <td><?=uang($cek_saldo,'ya')?></td>
             <td><?=uang(0,'ya')?></td>
@@ -30,7 +56,7 @@ $cek_saldo = $saldo_awal = mysqli_fetch_array($cek_saldo)['saldo_kemarin'];
         <?php
         $total_masuk = 0;
         $total_keluar = 0;
-        $cek_kas = mysqli_query($con,"SELECT * from kas where tanggal_kas>='$date' and tanggal_kas<='$date_banding'"); 
+        $cek_kas = mysqli_query($con,"SELECT * from kas where tanggal_kas>='$date' and tanggal_kas<='$date_banding' and id_usaha='$id_usaha'"); 
         while($kas = mysqli_fetch_array($cek_kas)){
             $kat = $kas['status'];
             $masuk =$kas['masuk'];
@@ -47,6 +73,7 @@ $cek_saldo = $saldo_awal = mysqli_fetch_array($cek_saldo)['saldo_kemarin'];
             ?>
              <tr>
                 <td><?=$no++?></td>
+                <td><?=$kas['tanggal_kas']?></td>
                 <td><?=$kas['akun']?></td>
                 <td><?=$kas['keterangan']?></td>
                 <td><?=uang($masuk,'ya')?></td>
@@ -67,7 +94,7 @@ $cek_saldo = $saldo_awal = mysqli_fetch_array($cek_saldo)['saldo_kemarin'];
         ?>
             <tr>
                 <th><?=$no++?></th>
-                <th colspan="2">TOTAL</th>
+                <th colspan="3">TOTAL</th>
                 <th><?=uang($total_semua = $total_masuk+$saldo_awal,'ya')?></th>
                 <th><?=uang($total_keluar,'ya')?></th>
                 <th><?=uang($total_semua-$total_keluar,'ya')?></th>
@@ -75,3 +102,6 @@ $cek_saldo = $saldo_awal = mysqli_fetch_array($cek_saldo)['saldo_kemarin'];
     </tbody>
 </table>
 
+<?php 
+}
+?>

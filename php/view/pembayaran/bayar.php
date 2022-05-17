@@ -86,14 +86,14 @@ if(isset($_POST['tmb_bayar'])){
     $tagihan = $_POST['bayar'];
     $tgl = $_POST['tgl'];
     $metode = $_POST['metode'];
-    $qbayar = "INSERT INTO `pembayaran` (`id_user`, `id_paket`, `id_langganan`, `nominal`, `status_pembayaran`, `pembayaran`, `payment_method`, `bulan`, `tahun`, `tgl_pembayaran`,`penerima_id`) 
-            VALUES ('$pel[id_user]', '$pel[id_paket]', '$pel[id_langganan]', '$tagihan', 'lunas', 'wifi', '$metode', '$priode', '$tahun', '2022-05-12','$uid');     ";
+    $qbayar = "INSERT INTO `pembayaran` (`id_user`, `id_paket`, `id_langganan`, `nominal`, `status_pembayaran`, `pembayaran`, `payment_method`, `bulan`, `tahun`, `tgl_pembayaran`,`penerima_id`,id_usaha) 
+            VALUES ('$pel[id_user]', '$pel[id_paket]', '$pel[id_langganan]', '$tagihan', 'lunas', 'wifi', '$metode', '$priode', '$tahun', '2022-05-12','$uid','$id_usaha');     ";
     $q = mysqli_query($con,$qbayar);
     if($q)
     {
         if($metode=='KAS'){
-        mysqli_query($con,"INSERT into `kas`(akun,keterangan,masuk,status,payment_method,tanggal_kas)
-                        values('401','penerimaan pembayaran wifi an $nama_pel bulan $priode tahun $tahun','$tagihan','debit','$metode','$tgl');
+        mysqli_query($con,"INSERT into `kas`(akun,keterangan,masuk,status,payment_method,tanggal_kas,id_usaha)
+                        values('401','penerimaan pembayaran wifi an $nama_pel bulan $priode tahun $tahun','$tagihan','debit','$metode','$tgl','$id_usaha');
         ");
 
         }

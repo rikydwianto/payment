@@ -1,4 +1,7 @@
-<?php include "./config/setting.php" ?>
+<?php include "./config/setting.php" ;
+error_reporting(0);
+?>
+<?php include "./php/proses/model.php" ?>
 <?php include "./php/config/koneksi.php" ?>
 <?php include "./php/config/function.php" ?>
 <?php include "./php/view/header.php"?>

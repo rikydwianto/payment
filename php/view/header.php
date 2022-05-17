@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow">
-    <title><?=$setting['title']?></title>
+    <title><?=$setting['title']?> - <?=$user_detail['nama_usaha']?></title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Bootstrap Core CSS -->
@@ -67,14 +67,19 @@
                     href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i
                         class="ti-menu"></i></a>
                 <div class="top-left-part"><a class="logo" href="<?=$url?>"><i
-                            class="glyphicon glyphicon-fire"></i>&nbsp;<span class="hidden-xs"><?=$setting['nama']?></span></a></div>
+                            class="glyphicon glyphicon-fire"></i>&nbsp;<span class="hidden-xs"><?=$user_detail['nama_usaha']?></span></a></div>
                 <ul class="nav navbar-top-links navbar-left hidden-xs">
                     <li><a href="javascript:void(0)" class="open-close hidden-xs hidden-lg waves-effect waves-light"><i
                                 class="ti-arrow-circle-left ti-menu"></i></a></li>
                 </ul>
                 <ul class="nav navbar-top-links navbar-right pull-right">
+                <li>
+                
+                </li>
                     <li>
+                        
                         <form role="search" class="app-search hidden-xs">
+                        <img src="<?=$url."assets/images/logo/".$user_detail['logo']?>" width="50" class="img-thumbnail" alt="">
                             <input type="text" placeholder="Search..." class="form-control">
                             <a href=""><i class="ti-search"></i></a>
                         </form>

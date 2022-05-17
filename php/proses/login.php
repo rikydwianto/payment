@@ -29,6 +29,7 @@ if(mysqli_num_rows($q)>0){
 	$cek=mysqli_fetch_array($q);
 		if($cek['password'] == $pass){
             $_SESSION['uid']=$cek['id_user'];
+            $_SESSION['id_usaha']=$cek['id_usaha'];
             $_SESSION['level']=$cek['level'];
 		pesan("BERHASIL LOGIN",'success');
 		pindah("$url");

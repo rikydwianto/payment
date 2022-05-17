@@ -22,7 +22,7 @@
     $tgl = date('j');
     $total=0;
     $total_tarif=0;
-    $cek_tagihan = mysqli_query($con,"SELECT * FROM langganan l  JOIN tb_user u ON u.`id_user` = l.`id_user`  JOIN paket p ON p.`id_paket` = l.`id_paket` WHERE p.`kategori`='wifi' and u.status='aktif' and l.status='aktif' ");
+    $cek_tagihan = mysqli_query($con,"SELECT * FROM langganan l  JOIN tb_user u ON u.`id_user` = l.`id_user`  JOIN paket p ON p.`id_paket` = l.`id_paket` WHERE p.`kategori`='wifi' and u.status='aktif' and l.status='aktif' #and l.id_usaha='$id_usaha' ");
     while($row = mysqli_fetch_array($cek_tagihan)){ 
     $cek_bayar = mysqli_query($con,"select * from tagihan where id_user='$row[id_user]' and id_langganan='$row[id_langganan]' and priode='$priode' and tahun='$tahun' #and status='belumbayar'");
     if(!mysqli_num_rows($cek_bayar))
@@ -79,8 +79,8 @@ if(isset($_POST['buat_tagihan'])){
        $id_user=$_POST['id_user'][$i];
        $priode=$_POST['priode'][$i];
        $tahun=$_POST['tahun'][$i];
-       $q[]="INSERT into tagihan(id_langganan,id_user,status,priode,tahun)
-       values('$id_langganan','$id_user','belumbayar','$priode','$tahun');";
+       $q[]="INSERT into tagihan(id_langganan,id_user,status,priode,tahun,id_usaha)
+       values('$id_langganan','$id_user','belumbayar','$priode','$tahun','$id_usaha');";
        $no++;
     }
     $tex  = implode("",($q));

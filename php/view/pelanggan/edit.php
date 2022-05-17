@@ -20,7 +20,7 @@ $r = mysqli_fetch_array($user);
                         <br><code>bisa dikosongkan</code>
                     </td>
                     <td>
-                        <input type="text" value='<?=$r['username']?>'  class='form-control' name='uname'>
+                        <input type="text" readonly value='<?=$r['username']?>'  class='form-control' name='uname'>
                     </td>
                 </tr>
                 <tr>
@@ -54,6 +54,12 @@ $r = mysqli_fetch_array($user);
                     </td>
                 </tr>
                 <tr>
+                    <td>UNIT USAHA</td>
+                    <td>
+                      <?=select_usaha($con,$r['id_usaha'])?>
+                    </td>
+                </tr>
+                <tr>
                     <td></td>
                     <td>
                         <input type="submit" name='edit_user' value='SIMPAN'class='btn btn-danger btn-lg'>
@@ -75,8 +81,9 @@ if(isset($_POST['edit_user'])){
     }
     $nohp = aman($_POST['nohp']);
     $level = aman($_POST['level']);
+    $id_usaha = aman($_POST['id_usaha']);
     $status = aman($_POST['status']);
-    $insert = "UPDATE `tb_user` SET `status` = '$status', username='$uname', level='$level', no_hp='$nohp', nama='$nama' $ganti_pass WHERE `id_user` = '$id'; 
+    $insert = "UPDATE `tb_user` SET `status` = '$status', username='$uname',id_usaha='$id_usaha', level='$level', no_hp='$nohp', nama='$nama' $ganti_pass WHERE `id_user` = '$id'; 
     ";
     $query = mysqli_query($con,$insert);
     if($query){

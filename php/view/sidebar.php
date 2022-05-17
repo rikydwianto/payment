@@ -2,6 +2,9 @@
 if(isset($_SESSION['uid'])){
     ?>
 <li>
+    <a href="<?=$url?>" class="waves-effect"><i class="ti-home fa-fw"></i> Dashboard</a>
+</li>
+<li>
     <a href="<?=$url.$menu?>pembayaran" class="waves-effect"><i class="ti-money fa-fw"></i>Pembayaran</a>
 </li>
 <li>

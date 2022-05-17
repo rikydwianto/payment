@@ -16,7 +16,7 @@
     </thead>
     <tbody>
     <?php 
-    $qlist= mysqli_query($con,"select * from tb_user ");
+    $qlist= mysqli_query($con,"select * from tb_user where id_usaha='$id_usaha' and level='cust' ");
     while($user = mysqli_fetch_array($qlist)){
 
     

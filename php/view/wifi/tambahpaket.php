@@ -21,6 +21,12 @@
             <td><input type="text" name="kategori" value="wifi" id="" class='form-control'></td>
         </tr>
         <tr>
+            <td>UNIT</td>
+            <td>
+                <?=select_usaha($con,$id_usaha)?>
+            </td>
+        </tr>
+        <tr>
             <td>&nbsp;</td>
             <td>
                 <input type="submit" name="tmb_paket" id="" class='btn btn-success'>
@@ -35,9 +41,10 @@ if(isset($_POST['tmb_paket'])){
     $nama = $_POST['nama_paket'];
     $keterangan = $_POST['keterangan'];
     $tarif = $_POST['tarif'];
+    $id_usaha = $_POST['id_usaha'];
     $kategori = $_POST['kategori'];
-    $q = "INSERT into paket(nama_paket,tarif,keterangan,kategori) 
-    values('$nama','$tarif','$keterangan','$kategori')";
+    $q = "INSERT into paket(nama_paket,tarif,keterangan,kategori,id_usaha) 
+    values('$nama','$tarif','$keterangan','$kategori','$id_usaha')";
     if(mysqli_query($con,$q)){
         swal("BERHASIL DITAMBAHKAN");
     }

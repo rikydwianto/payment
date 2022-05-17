@@ -35,6 +35,12 @@
                 </td>
             </tr>
             <tr>
+                <td>UNIT</td>
+                <td>
+                    <?=select_usaha($con,$id_usaha)?>
+                </td>
+            </tr>
+            <tr>
                 <td>&nbsp;</td>
                 <td>
                     <input type="submit" value="SIMPAN" name='tmb_kas' class='btn btn-danger'>
@@ -52,12 +58,13 @@ if(isset($_POST['tmb_kas'])){
     $nominal = $_POST['nominal'];
     $status = $_POST['pemasukan'];
     $tgl = $_POST['tgl'];
+    $id_usaha = $_POST['id_usaha'];
     if($status=='debit'){
-        $text =" INSERT INTO `kas` (`akun`, `keterangan`, `masuk`, `status`, `payment_method`, `tanggal_kas`) 
-        VALUES ('$akun', '$ket', '$nominal', 'debit', 'KAS', '$tgl'); ";
+        $text =" INSERT INTO `kas` (`akun`, `keterangan`, `masuk`, `status`, `payment_method`, `tanggal_kas`,id_usaha) 
+        VALUES ('$akun', '$ket', '$nominal', 'debit', 'KAS', '$tgl','$id_usaha'); ";
     }else{
-        $text =" INSERT INTO `kas` (`akun`, `keterangan`, `keluar`, `status`, `payment_method`, `tanggal_kas`) 
-        VALUES ('$akun', '$ket', '$nominal', 'kredit', 'KAS', '$tgl'); ";
+        $text =" INSERT INTO `kas` (`akun`, `keterangan`, `keluar`, `status`, `payment_method`, `tanggal_kas`,id_usaha) 
+        VALUES ('$akun', '$ket', '$nominal', 'kredit', 'KAS', '$tgl','$id_usaha'); ";
     }
     $query = mysqli_query($con,$text);
     if($query){

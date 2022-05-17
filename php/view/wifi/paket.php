@@ -13,7 +13,7 @@
     </thead>
     <tbody>
         <?php 
-        $cek_paket = mysqli_query($con,"select * from paket where kategori='wifi'");
+        $cek_paket = mysqli_query($con,"select * from paket where id_usaha='$id_usaha'");
         while($row = mysqli_fetch_array($cek_paket)){
 
         

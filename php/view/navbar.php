@@ -23,8 +23,8 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
-                    <div class="col-lg-12">
-                        <h4 class="page-title"><?=$setting['nama']?></h4>
+                    <div class="col-lg-11">
+                        <h4 class="page-title"><?=$setting['nama']?> - <?=$user_detail['nama_usaha']?></h4>
                         <ol class="breadcrumb">
                             <li><a href="<?=$url?>">Dashboard</a></li>
                             <li class="active"><a href="<?=$url.$menu.$bread?>"> <?=$bread?></a></li>
@@ -37,6 +37,9 @@
                             ?>
                             
                         </ol>
+                    </div>
+                    <div class="col-l-1">
+                    <img src="<?=$url."assets/images/logo/".$user_detail['logo']?>" width="80" class="img-thumbnail mb-3 " alt="">
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
