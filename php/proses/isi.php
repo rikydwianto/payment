@@ -1,19 +1,29 @@
 <?php 
-use GuzzleHttp\Client;
-$client = new Client([
-    'base_uri'=>'https://doa-doa-api-ahmadramadhan.fly.dev',
-    'time_out'=>2
-]);
-$respon = $client->request('GET','api/doa/v1/random');
-$respon = $respon->getBody();
-$doa = json_decode($respon,true);
+
 // echo dd($doa);
-?>
-<small style="font-size: 12px;">
+use GuzzleHttp\Client;
+$connected = @fsockopen("www.google.com", 80);
+if(!$connected){
+    echo"Tidak terhubung ke inet";
+}
+else{
+    $client = new Client([
+        'base_uri'=>'https://doa-doa-api-ahmadramadhan.fly.dev',
+        'time_out'=>2
+    ]);
+    $respon = $client->request('GET','api/doa/v1/random');
+    $respon = $respon->getBody();
+    $doa = json_decode($respon,true);
+    ?>
+    <small style="font-size: 12px;">
 
 <b></b> <?=$doa[0]['doa']?> | <b>Ayat</b> : <?=$doa[0]['ayat']?> <br>
 <b>Arti</b> : <?=$doa[0]['artinya']?>      <b>latin</b> <?=$doa[0]['latin']?>
 </small>
+    <?php
+}
+?>
+
 </div>
 </div>
 <div class="col-md-12">
