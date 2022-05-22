@@ -29,7 +29,7 @@ function pindah($url){
       setTimeout(function() {
         window.location = "<?=$url?>";
 
-    }, 2000);
+    }, 1200);
 
     </script>
     <?php

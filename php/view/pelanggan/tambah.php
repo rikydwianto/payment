@@ -96,7 +96,7 @@ if(isset($_POST['tambah_user'])){
     if($query){
         swal('Berhasil ditambahkan, Silahkan Pilih Paket','INFORMASI');
         $id_user  = mysqli_insert_id($con);
-        pindah($url.$menu.'pelanggan&sub=pilih_paket&id='.$id_user);
+        pindah($url.$menu.'pelanggan&sub=tambah&id='.$id_user);
     }
     else{
         $erro = htmlentities(mysqli_error($con));

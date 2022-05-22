@@ -32,7 +32,7 @@ $val_user = "pemb-".sprintf("%03d",$id_usaha).'-'. sprintf("%04d",$no_user);
                         <select name="id" class='form-control' required id="">
                             <option value="" >PILIH NASABAH</option>
                             <?php 
-                            $quser=mysqli_query($con,"select * from tb_user where id_usaha ='$id_usaha' and level='cust' order by id_user asc");
+                            $quser=mysqli_query($con,"select * from tb_user where id_usaha ='$id_usaha' and status='aktif' and level='cust' order by id_user asc");
                             while($user = mysqli_fetch_array($quser)){
                                 ?>
                             <option value="<?=base64_encode(sprintf("%09d",$user['id_user']))?>"><?=$user['username']?> - <?=$user['nama']?></option>

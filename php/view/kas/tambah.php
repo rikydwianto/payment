@@ -123,7 +123,7 @@ if(isset($_POST['tmb_kas'])){
 
 
         swal('Berhasil ditambahkan','INFORMASI');
-        pindah(menu('kas'));
+        pindah(menu('kas','tambah'));
     }
     else{
         $erro = htmlentities(mysqli_error($con));

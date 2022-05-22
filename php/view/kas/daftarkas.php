@@ -9,9 +9,9 @@
             <input type="hidden" name="menu" value='kas'>
             <input type="hidden" name="sub" value="list">
             <div class="col-md-4">
-                <input type="date" value='<?=date('Y-m-d')?>' class='form-control' name="tgl_awal" id=""></div>    
+                <input type="date" value='<?=(isset($_GET['tgl_awal']) ?  $_GET['tgl_awal'] : date("Y-m-d"))?>' class='form-control' name="tgl_awal" id=""></div>    
             <div class="col-md-4">
-            <input type="date" value='<?=date('Y-m-d')?>' class='form-control' name="tgl_banding" id="">
+            <input type="date" value='<?=(isset($_GET['tgl_banding']) ?  $_GET['tgl_banding'] : date("Y-m-d"))?>' class='form-control' name="tgl_banding" id="">
 
             </div>  
             <div class="col-md-4">
