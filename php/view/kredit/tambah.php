@@ -1,5 +1,5 @@
 <?php 
-$cek_user = mysqli_query($con,"select count(*) as total, id_user,kode_pembiayaan from pembiayaan where  id_usaha='$id_usaha' order by id_pembiayaan desc limit 0,1");
+$cek_user = mysqli_query($con,"select count(*) as total, id_pembiayaan,kode_pembiayaan from pembiayaan where  id_usaha='$id_usaha' order by id_pembiayaan desc limit 0,1");
 $cek_user = mysqli_fetch_array($cek_user);
 
 if($cek_user['total']==0){
@@ -9,7 +9,7 @@ if($cek_user['total']==0){
 } 
 else{
     // $cek_user = mysqli_fetch_array($cek_user);
-    $no_user = (int)$cek_user['id_user'] + 1;
+    $no_user = (int)$cek_user['id_pembiayaan'] + 1;
     // echo $cek_user['username'];
 }
 $val_user = "pemb-".sprintf("%03d",$id_usaha).'-'. sprintf("%04d",$no_user);
