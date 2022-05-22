@@ -244,6 +244,11 @@ function coa($key=null,$required='required'){
   <?php
 }
 
+function cari_coa($key){
+  $con = $GLOBALS['con'];
+  $qcoa = mysqli_query($con,"select * from coa where no_akun='$key'");
+  return mysqli_fetch_array($qcoa)['nama_perkiraan'];
+ }
 
 function debitkredit($key=null,$required='required'){
   $array = array('debit'=>'PEMASUKAN','kredit'=>'PENGELUARAN')

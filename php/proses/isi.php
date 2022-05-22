@@ -41,8 +41,14 @@ if(isset($_GET['menu'])){
         include"$path";
     }
     else{
-        swal('halaman tidak ditemukan','HALAMAN TIDAK DITEMUKAN','warning');
-        pindah("404.php");
+        if($halaman=='home'){
+            include"./php/view/halamanawal.php";
+        }
+        else{
+
+            swal('halaman tidak ditemukan','HALAMAN TIDAK DITEMUKAN','warning');
+            pindah("404.php");
+        }
     }
 }
 else{

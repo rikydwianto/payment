@@ -49,7 +49,7 @@ $cek_saldo = $saldo_awal = mysqli_fetch_array($cek_saldo)['saldo_kemarin'];
         <tr>
             <td colspan="4">SALDO AWAL</td>
 
-            <td><?=uang($cek_saldo,'ya')?></td>
+            <td><?=uang(0,'ya')?></td>
             <td><?=uang(0,'ya')?></td>
             <td><?=uang($cek_saldo,'ya')?></td>
         </tr>
@@ -83,7 +83,7 @@ $cek_saldo = $saldo_awal = mysqli_fetch_array($cek_saldo)['saldo_kemarin'];
                     <?php 
                     if(isset($_GET['kelola'])){
                         ?>
-                    <a href="javascript:void()" onclick="konfirmasi('<?=menu('kas','hapus',$kas['id_kas'])?>','Apakah yakin akan menghapus KAS ini? setelah dihapus tidak dapat dikembalikan')" class="btn btn-danger"><i class="ti ti-close"></i></a>
+                    <a href="javascript:void()" onclick="konfirmasi('<?=menu('kas','hapus',$kas['id_kas'],'&url='.urlencode($actual_link))?>','Apakah yakin akan menghapus KAS ini? setelah dihapus tidak dapat dikembalikan')" class="btn btn-danger"><i class="ti ti-close"></i></a>
                         <?php
                     }
                     ?>
@@ -95,7 +95,7 @@ $cek_saldo = $saldo_awal = mysqli_fetch_array($cek_saldo)['saldo_kemarin'];
             <tr>
                 <th><?=$no++?></th>
                 <th colspan="3">TOTAL</th>
-                <th><?=uang($total_semua = $total_masuk+$saldo_awal,'ya')?></th>
+                <th><?=uang($total_semua = $total_masuk,'ya')?></th>
                 <th><?=uang($total_keluar,'ya')?></th>
                 <th><?=uang($total_semua-$total_keluar,'ya')?></th>
             </tr>

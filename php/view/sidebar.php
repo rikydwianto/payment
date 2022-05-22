@@ -2,24 +2,31 @@
 if(isset($_SESSION['uid'])){
     ?>
 <li>
-    <a href="<?=$url?>" class="waves-effect"><i class="ti-home fa-fw"></i> Dashboard</a>
+    <a href="<?=menu('home')?>" class="waves-effect"><i class="ti-home fa-fw"></i> Dashboard</a>
 </li>
 <li>
     <a href="<?=$url.$menu?>pembayaran" class="waves-effect"><i class="ti-money fa-fw"></i>Pembayaran</a>
 </li>
 <li>
     <a href="<?=$url.$menu?>wifi" class="waves-effect"><i class="glyphicon glyphicon-fire fa-fw"></i>
-        WIFI</a>
+        PAKET</a>
+</li>
+<li>
+    <a href="<?=$url.$menu?>kredit" class="waves-effect"><i class="ti-money glyphicon-fire fa-fw"></i>
+        Kredit</a>
 </li>
 <li>
     <a href="<?=$url.$menu?>pelanggan" class="waves-effect"><i class="ti-user fa-fw"></i>Pelanggan</a>
 </li>
 <li>
-    <a href="<?=$url.$menu?>pulsa" class="waves-effect"><i class="ti-handphone fa-fw"></i>PULSA</a>
+    <a href="<?=$url.$menu?>pulsa" class="waves-effect"><i class="ti-handphone fa-fw"></i>Produk Digital</a>
 </li>
 
 <li>
     <a href="<?=$url.$menu?>kas" class="waves-effect"><i class="ti-face-smile fa-fw"></i> Arus Kas</a>
+</li>
+<li>
+    <a href="<?=$url.$menu?>kas&sub=tambah" class="waves-effect"><i class="ti-plus fa-fw"></i> Tambah Kas</a>
 </li>
 <!-- <li>
     <a href="map-google.html" class="waves-effect"><i class="ti-location-pin fa-fw"></i> Google

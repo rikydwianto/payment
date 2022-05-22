@@ -54,6 +54,8 @@
 <?php
 if(isset($_POST['tmb_kas'])){
     $akun = $_POST['coa'];
+    $kode = $akun[0];
+    
     $ket = $_POST['keterangan'];
     $nominal = $_POST['nominal'];
     $status = $_POST['pemasukan'];
@@ -66,8 +68,60 @@ if(isset($_POST['tmb_kas'])){
         $text =" INSERT INTO `kas` (`akun`, `keterangan`, `keluar`, `status`, `payment_method`, `tanggal_kas`,id_usaha) 
         VALUES ('$akun', '$ket', '$nominal', 'kredit', 'KAS', '$tgl','$id_usaha'); ";
     }
+    // $text="select curdate()";
     $query = mysqli_query($con,$text);
+    $id_kas = mysqli_insert_id($con);
+    // echo $id_kas;
+    $cari_coa = cari_coa($akun);
     if($query){
+        if($kode == 1 || $kode == 5){
+            if($status=='debit'){
+                echo"harus bertambah";
+                mysqli_query($con,"INSERT into `jurnal`(akun,keterangan,masuk,status,payment_method,tanggal_kas,id_usaha,refrensi,urutan)
+                values('$akun','$cari_coa','$nominal','debit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','2');
+                ");
+                mysqli_query($con,"INSERT into `jurnal`(akun,keterangan,keluar,status,payment_method,tanggal_kas,id_usaha,refrensi,urutan)
+                values('101','KAS','$nominal','kredit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','1');
+                ");
+
+            }
+            else{
+                echo"harus berkurang";
+                mysqli_query($con,"INSERT into `jurnal`(akun,keterangan,keluar,status,payment_method,tanggal_kas,id_usaha,refrensi,urutan)
+                values('101','KAS','$nominal','kredit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','2');
+                ");
+                mysqli_query($con,"INSERT into `jurnal`(akun,keterangan,masuk,status,payment_method,tanggal_kas,id_usaha,refrensi,urutan)
+                values('$akun','$cari_coa','$nominal','debit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','1');
+                ");
+
+            }
+        }
+
+
+        if($kode == 2 || $kode == 3 || $kode == 4){
+            if($status=='debit'){
+                echo"harus berkurang";
+                mysqli_query($con,"INSERT into `jurnal`(akun,keterangan,keluar,status,payment_method,tanggal_kas,id_usaha,refrensi,urutan)
+                values('$akun','$cari_coa','$nominal','kredit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','2');
+                ");
+                mysqli_query($con,"INSERT into `jurnal`(akun,keterangan,masuk,status,payment_method,tanggal_kas,id_usaha,refrensi,urutan)
+                values('101','KAS','$nominal','debit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','1');
+                ");
+
+            }
+            else{
+                echo"harus bertambah   ";
+                mysqli_query($con,"INSERT into `jurnal`(akun,keterangan,keluar,status,payment_method,tanggal_kas,id_usaha,refrensi,urutan)
+                values('101','KAS','$nominal','kredit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','2');
+                ");
+                mysqli_query($con,"INSERT into `jurnal`(akun,keterangan,masuk,status,payment_method,tanggal_kas,id_usaha,refrensi,urutan)
+                values('$akun','$cari_coa','$nominal','debit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','1');
+                ");
+
+            }
+        }
+
+
         swal('Berhasil ditambahkan','INFORMASI');
         pindah(menu('kas'));
     }

@@ -5,7 +5,7 @@
 </div>
 </div>
 <?php 
-$qkas = mysqli_query($con,"SELECT count(*) hitung_trx,SUM(masuk) AS masuk, SUM(keluar) AS keluar, SUM(masuk)   - SUM(keluar) AS total FROM kas where id_usaha='$id_usaha'");
+$qkas = mysqli_query($con,"SELECT count(*) hitung_trx,SUM(masuk) AS masuk, SUM(keluar) AS keluar, SUM(masuk)   - SUM(keluar) AS total FROM kas where payment_method='KAS' and id_usaha='$id_usaha'");
 $kas = mysqli_fetch_array($qkas);
 $total = $kas['total'];
 $masuk = $kas['masuk'];
@@ -18,20 +18,20 @@ $client = mysqli_fetch_array($qclient);
 <div class="col-md-12 col-lg-12 col-sm-12">
     <div class="white-box">
         <div class="row row-in">
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-6 col-sm-6">
                 <div class="col-in text-center">
                     <h5 class="text-danger">KAS</h5>
                     <h3 class="counter"><?=uang($total,'ya')?></h3>
                 </div>
             </div>
            
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
                 <div class="col-in text-center">
                     <h5 class="text-muted text-purple">Total Transaksi</h5>
                     <h3 class="counter"><?=uang($trx)?></h3>
                 </div>
             </div>
-            <div class="col-lg-4 col-sm-6">
+            <div class="col-lg-3 col-sm-6">
                 <div class="col-in text-center b-r-none">
                     <h5 class="text-muted text-warning">Client</h5>
                     <h3 class="counter"><?=uang($client['client'])?></h3>
