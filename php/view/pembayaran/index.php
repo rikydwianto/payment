@@ -2,6 +2,7 @@
 <div style="float:right"> 
 <a href="<?=$url.$menu."pembayaran&sub=riwayat"?>" class="btn btn-primary">Riwayat Pembayaran</a>
 <a href="<?=menu('pembayaran','tambahtagihan')?>" class="btn btn-danger">Tambah Tagihan</a>
+<a href="<?=menu('pembayaran','tagihankredit')?>" class="btn btn-danger"> <i class="ti-plus"></i> Pembayaran Kredit</a>
 </div>
 
 
@@ -20,6 +21,9 @@ if(isset($_GET['sub'])){
              break;
         case"tambahtagihan":
              include"./php/view/pembayaran/tambahtagihan.php";
+             break;
+        case"tagihankredit":
+             include"./php/view/pembayaran/tagihankredit.php";
              break;
         case"hapustagihan":
              include"./php/view/pembayaran/hapustagihan.php";

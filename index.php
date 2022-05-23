@@ -19,7 +19,7 @@ if(!empty($uid)){
 
 if (!isset($_SESSION['uid'])) {
     $refer = urlencode($_SERVER['HTTP_REFERER']);
-    swal('Silahkan Login terlebih dahulu','','warning');
+    swal('Silahkan Login terlebih dahulu','LOGIN DULU!','warning');
     pindah("login.php?url=$refer");
 
 } 
