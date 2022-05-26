@@ -97,7 +97,7 @@ $cek_saldo = $saldo_awal = mysqli_fetch_array($cek_saldo)['saldo_kemarin'];
                 <th colspan="3">TOTAL</th>
                 <th><?=uang($total_semua = $total_masuk,'ya')?></th>
                 <th><?=uang($total_keluar,'ya')?></th>
-                <th><?=uang($total_semua-$total_keluar,'ya')?></th>
+                <th><?=uang($cek_saldo,'ya')?></th>
             </tr>
     </tbody>
 </table>
