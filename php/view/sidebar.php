@@ -5,6 +5,9 @@ if(isset($_SESSION['uid'])){
     <a href="<?=menu('home')?>" class="waves-effect"><i class="ti-home fa-fw"></i> Dashboard</a>
 </li>
 <li>
+    <a href="<?=$url.$menu?>cashir" class="waves-effect"><i class="ti-shopping-cart-full fa-fw"></i>KASIR</a>
+</li>
+<li>
     <a href="<?=$url.$menu?>pembayaran" class="waves-effect"><i class="ti-money fa-fw"></i>Pembayaran</a>
 </li>
 <li>
@@ -17,6 +20,9 @@ if(isset($_SESSION['uid'])){
 </li>
 <li>
     <a href="<?=$url.$menu?>pelanggan" class="waves-effect"><i class="ti-user fa-fw"></i>Pelanggan</a>
+</li>
+<li>
+    <a href="<?=$url.$menu?>barang" class="waves-effect"><i class="ti-truck fa-fw"></i>Barang</a>
 </li>
 <li>
     <a href="<?=$url.$menu?>pulsa" class="waves-effect"><i class="ti-handphone fa-fw"></i>Produk Digital</a>

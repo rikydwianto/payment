@@ -4,6 +4,7 @@
 <?php include "./php/config/function.php" ?>
 <?php include "./vendor/autoload.php"; ?>
 <?php include "./php/config/koneksi.php" ?>
+<?php include"./php/proses/db.php";?>
 <?php $id_usaha = $_SESSION['id_usaha'];
 $uid = $_SESSION['uid'];
 if(!empty($uid)){

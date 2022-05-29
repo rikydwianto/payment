@@ -78,11 +78,14 @@
         ");
         $id_kas= mysqli_insert_id($con);
         mysqli_query($con,"INSERT into `jurnal`(akun,keterangan,masuk,status,payment_method,tanggal_kas,id_usaha,refrensi,urutan)
-                values('101','KAS','$total_semua','debit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','1');
+                values('101','KAS','$total_pokok','debit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','1');
                 ");
         mysqli_query($con,"INSERT into `jurnal`(akun,keterangan,keluar,status,payment_method,tanggal_kas,id_usaha,refrensi,urutan)
         values('1031','Penerimaan pokok','$total_pokok','kredit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','2');
         ");
+        mysqli_query($con,"INSERT into `jurnal`(akun,keterangan,masuk,status,payment_method,tanggal_kas,id_usaha,refrensi,urutan)
+                values('101','KAS','$total_margin','debit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','1');
+                ");
         mysqli_query($con,"INSERT into `jurnal`(akun,keterangan,keluar,status,payment_method,tanggal_kas,id_usaha,refrensi,urutan)
         values('410','Penerimaan Margin','$total_margin','kredit','KAS','$tgl','$id_usaha','kas-$id_usaha-$id_kas','3');
         ");

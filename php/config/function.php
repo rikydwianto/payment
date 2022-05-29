@@ -185,6 +185,26 @@ function level_user($key=null,$required='required'){
   <?php
 }
 
+
+function satuan($key=null,$required='required'){
+  $array = array('PCS'=>'PCS','LUSIN'=>'LUSIN','KARTON'=>'KARTON/DUS','KARUNG'=>'KARUNG'  )
+  ?>
+   <select name="satuan" <?=$required?> id="" class='form-control'>
+        <option value="">PILIH SATUAN BARANG</option>
+      <?php 
+      foreach($array as $r => $val){
+        if($key==$r) $sel='selected';
+        else  $sel='';
+        ?>
+        <option <?=$sel?> value="<?=$r?>"><?=$val?></option>
+        <?php
+      }
+      ?>
+      <!-- <option value="admin">ADMIN</option> -->
+  </select>
+  <?php
+}
+
 function status($key=null,$required='required'){
   $array = array('aktif'=>'AKTIF','tidakaktif'=>'TIDAK AKTIF')
   ?>
