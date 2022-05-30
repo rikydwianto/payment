@@ -18,7 +18,7 @@ if(isset($_GET['pilih_barang'])){
     <div class='col-md-7'>
     <ul class="list-group">
     <?php 
-    $q=mysqli_query($con,"SELECT * from barang where id_usaha='$id_usaha' and (nama_barang like '%$key%' or kode_barang like'%$key%') and stok>0");
+    $q=mysqli_query($con,"SELECT * from barang where id_usaha='$id_usaha' and (nama_barang like '%$key%' or kode_barang like'%$key%') and stok>0 and deleted is null");
     if(!mysqli_num_rows($q)){
         echo "$key tidak ditemukan";
     }
@@ -81,15 +81,16 @@ if(isset($_GET['ganti_diskon'])){
 
 if(isset($_GET['bayar'])){
    $id = $_GET['idtrx'];
-//    $diskon = $_GET['diskon'];
+   $diskon = $_GET['total_diskon'];
+   $bayar = $_GET['total_bayar'];
     $qbarang =mysqli_query($con,"SELECT *, d.harga_jual as harga_tampil from detail_transaksi d join barang b on b.id_barang=d.id_barang  where  d.id_transaksi='$id'");
     while($trx = mysqli_fetch_array($qbarang)){
-
+        
         mysqli_query($con,"update barang set stok=stok-$trx[qty] where id_barang='$trx[id_barang]'");
     }
     
-      $input = mysqli_query($con,"update transaksi set status='berhasil' where id_transaksi='$id'");
-      echo "berhasil";
+      $input = mysqli_query($con,"update transaksi set status='berhasil',diskon_total='$diskon', total_bayar='$bayar',posting_jurnal='belum' where id_transaksi='$id'");
+      echo "Berhasil disimpan";
    echo mysqli_error($con);
 //    echo"berhasil";
 }
@@ -217,7 +218,9 @@ if(isset($_GET['transaksi'])){
             <td>
             </td>
             <td>
-            <a href="javascript:void(0)" class="btn btn-lg btn-danger" onclick="bayar('<?=$idtrx?>')">Bayar</a>
+                <input type="hidden" name='total_bayar' id='total_bayar' value='<?=$total_bayar?>'>
+                <input type="hidden" name='total_diskon' id='total_diskon' value='<?=$total_diskon?>'>
+                <a href="javascript:void(0)" class="btn btn-lg btn-danger" onclick="bayar('<?=$idtrx?>')">Bayar</a>
             </td>
         </tr>
     </table>
